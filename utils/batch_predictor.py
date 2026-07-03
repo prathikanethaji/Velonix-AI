@@ -1,14 +1,12 @@
 import pandas as pd
 import joblib
 
-# Load trained model
-model = joblib.load("bike_demand_model.joblib")
-
-
 def predict_dataset(file_path):
 
     # Read CSV
     df = pd.read_csv(file_path)
+    # Load trained model
+    model = joblib.load("bike_demand_model.joblib")
 
     # Columns the user must upload
     required_columns = [

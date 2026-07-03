@@ -6,7 +6,7 @@ from utils.predictor import predict_bike
 
 from utils.recommendation import get_recommendation
 
-from utils.analytics import *
+import utils.analytics as analytics
 
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
@@ -62,19 +62,18 @@ def predict():
 
 
 @app.route("/analytics")
-def analytics():
+def analytics_page():
 
     return render_template(
-    "analytics.html",
-    hourly=hourly_chart(),
-    monthly=monthly_chart(),
-    seasonal=seasonal_chart(),
-    weather=weather_chart(),
-    peaks=top_peak_hours(),
-    stats=dashboard_stats(),
-    insights=ai_insights(),
-    active_page="analytics"
-)
+        "analytics.html",
+        hourly=analytics.hourly_chart(),
+        monthly=analytics.monthly_chart(),
+        seasonal=analytics.seasonal_chart(),
+        weather=analytics.weather_chart(),
+        peaks=analytics.top_peak_hours(),
+        stats=analytics.dashboard_stats(),
+        insights=analytics.ai_insights()
+    )
 
 
 @app.route("/about")
