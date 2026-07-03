@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}
+Predict | Velonix AI
+{% endblock %}
+
+{% block content %}
+
+<div class="predict-container">
+
+    <h1>🚲 Demand Prediction</h1>
+
+    <p>Enter the required details to forecast bike demand.</p>
+
+    <form method="POST">
+
+        <!-- Season -->
+        <label>Season</label>
+
+        <select name="season" required>
+            <option value="1">🌸 Spring</option>
+            <option value="2">☀ Summer</option>
+            <option value="3">🍂 Fall</option>
+            <option value="4">❄ Winter</option>
+        </select>
+
+        <!-- Month -->
+        <label>Month</label>
+
+        <select name="mnth" required>
+
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+
+        </select>
+
+        <!-- Hour -->
+
+        <label>Hour</label>
+
+        <select name="hr" required>
+
+            {% for i in range(24) %}
+
+            <option value="{{ i }}">
+
+                {{ "%02d:00"|format(i) }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <!-- Weekday -->
+
+        <label>Day of Week</label>
+
+        <select name="weekday" required>
+
+            <option value="0">Sunday</option>
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Friday</option>
+            <option value="6">Saturday</option>
+
+        </select>
+
+        <!-- Weather -->
+
+        <label>Weather</label>
+
+        <select name="weathersit" required>
+
+            <option value="1">☀ Clear</option>
+            <option value="2">🌤 Mist / Cloudy</option>
+            <option value="3">🌧 Light Rain / Snow</option>
+            <option value="4">⛈ Heavy Rain / Snow</option>
+
+        </select>
+
+        <!-- Temperature -->
+
+        <label for="temp">
+
+            🌡 Temperature (°C)
+
+            <span id="temp-value">25°C</span>
+
+        </label>
+
+        <input
+
+            type="range"
+
+            id="temp"
+
+            name="temp"
+
+            min="0"
+
+            max="40"
+
+            step="0.1"
+
+            value="25"
+
+            oninput="document.getElementById('temp-value').innerText=this.value+'°C'"
+
+        >
+
+        <!-- Humidity -->
+
+        <label for="hum">
+
+            💧 Humidity (%)
+
+            <span id="hum-value">60%</span>
+
+        </label>
+
+        <input
+
+            type="range"
+
+            id="hum"
+
+            name="hum"
+
+            min="0"
+
+            max="100"
+
+            step="1"
+
+            value="60"
+
+            oninput="document.getElementById('hum-value').innerText=this.value+'%'"
+
+        >
+
+        <button type="submit">
+
+            🚀 Predict Demand
+
+        </button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="result-card">
+
+        <h2>Prediction Result</h2>
+
+        <h1>{{ prediction }} Bikes</h1>
+
+        <div class="demand-level">
+
+            {{ demand }}
+
+        </div>
+
+        <div class="recommendation-box">
+
+            <h3>💡 AI Recommendation</h3>
+
+            <p>{{ recommendation }}</p>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

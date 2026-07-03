@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}
+Batch Prediction | Velonix AI
+{% endblock %}
+
+{% block content %}
+
+<section class="batch-page">
+
+    <h1>📂 Batch Prediction</h1>
+
+    <p>
+        Upload a CSV dataset and generate predictions for multiple records.
+    </p>
+
+    <div class="upload-card">
+
+       <form id="upload-form" method="POST" enctype="multipart/form-data">
+
+    <div id="drop-area">
+
+        <div class="upload-content">
+
+            <h2>📂 Drag & Drop CSV Here</h2>
+
+            <p>or</p>
+
+            <label for="fileElem" class="browse-btn">
+
+                Choose CSV File
+
+            </label>
+
+            <input
+                type="file"
+                id="fileElem"
+                name="file"
+                accept=".csv"
+                hidden>
+
+            <p class="file-name">
+
+                No file selected
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <button class="predict-btn" type="submit">
+
+        🚀 Predict Dataset
+
+    </button>
+
+</form>
+
+
+{% if error %}
+
+<div class="alert error">
+
+    {{ error }}
+
+</div>
+
+{% endif %}
+
+
+{% if success %}
+
+<div class="alert success">
+
+    ✅ Dataset processed successfully!
+
+    <br><br>
+
+    Total Records :
+
+    <strong>{{ rows }}</strong>
+
+    <br><br>
+
+    <a href="/download_predictions/{{ filename }}" class="download-btn">
+
+        ⬇ Download Predictions
+
+    </a>
+
+</div>
+
+{% endif %}
+
+       <a href="{{ url_for('sample_csv') }}" class="sample-btn">
+          ⬇ Download Sample CSV
+       </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

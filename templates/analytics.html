@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}
+Analytics | Velonix AI
+{% endblock %}
+
+{% block content %}
+
+<section class="analytics-page">
+
+    <div class="analytics-header">
+
+        <h1>📊 Analytics Dashboard</h1>
+
+        <p>
+            Explore historical bike demand trends and patterns.
+        </p>
+
+    </div>
+
+    <div class="stats-grid">
+
+    <div class="stat-card">
+
+        <h3>Total Rentals</h3>
+
+        <h1>{{ "{:,}".format(stats.total_rentals) }}</h1>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Average Demand</h3>
+
+        <h1>{{ stats.average_demand }}</h1>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Peak Hour</h3>
+
+        <h1>{{ stats.peak_hour }}:00</h1>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>Peak Month</h3>
+
+        <h1>{{ stats.peak_month }}</h1>
+
+    </div>
+
+</div>
+
+    <!-- First Row -->
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            {{ hourly|safe }}
+
+        </div>
+
+        <div class="chart-card">
+
+            {{ monthly|safe }}
+
+        </div>
+
+    </div>
+
+    <!-- Second Row -->
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            {{ seasonal|safe }}
+
+        </div>
+
+        <div class="chart-card">
+
+            {{ weather|safe }}
+
+        </div>
+
+    </div>
+
+    <!-- Peak Hours -->
+
+    <div class="peak-card">
+
+        <h2>🏆 Top 5 Peak Hours</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Hour</th>
+
+                    <th>Average Rentals</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for hour,value in peaks.items() %}
+
+                <tr>
+
+                    <td>{{ hour }}:00</td>
+
+                    <td>{{ value|round|int }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="insight-card">
+
+    <h2>🤖 AI Insights</h2>
+
+    <ul>
+
+        {% for insight in insights %}
+
+        <li>{{ insight }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+</section>
+
+{% endblock %}
