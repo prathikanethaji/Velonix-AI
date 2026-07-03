@@ -146,8 +146,6 @@ Velonix_AI/
 
 # 📸 Application Screenshots
 
-> *(Add screenshots here after deployment.)*
-
 ### 🏠 Home Page
 
 *<img width="1896" height="862" alt="image" src="https://github.com/user-attachments/assets/f345e2d4-c5c9-4920-b587-1844c4956d02" />*
