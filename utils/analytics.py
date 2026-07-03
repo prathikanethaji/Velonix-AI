@@ -8,6 +8,8 @@ def load_data():
 
 def hourly_chart():
 
+    df = load_data()
+
     hourly = df.groupby("hr")["cnt"].mean().reset_index()
 
     fig = px.line(
@@ -27,7 +29,7 @@ def hourly_chart():
 
 
 def monthly_chart():
-
+    df = load_data()
     monthly = df.groupby("mnth")["cnt"].mean().reset_index()
 
     fig = px.bar(
@@ -47,6 +49,8 @@ def monthly_chart():
 
 
 def seasonal_chart():
+
+    df = load_data()
 
     season_names = {
         1:"Spring",
@@ -85,6 +89,8 @@ def seasonal_chart():
 
 
 def weather_chart():
+
+    df = load_data()
 
     weather_names={
 
@@ -129,12 +135,14 @@ def weather_chart():
 
 def top_peak_hours():
 
-    peak=df.groupby("hr")["cnt"].mean().sort_values(ascending=False).head(5)
+    df = load_data()
+    peak = df.groupby("hr")["cnt"].mean().sort_values(ascending=False).head(5)
 
     return peak
 
 def dashboard_stats():
 
+    df = load_data()
     stats = {
 
         "total_rentals": int(df["cnt"].sum()),
@@ -150,6 +158,8 @@ def dashboard_stats():
     return stats
 
 def ai_insights():
+
+    df = load_data()
 
     peak_hour = df.groupby("hr")["cnt"].mean().idxmax()
 
