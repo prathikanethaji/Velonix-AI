@@ -2,7 +2,8 @@ import pandas as pd
 import plotly.express as px
 
 # Load dataset once
-df = pd.read_csv("hour.csv")
+def load_data():
+    return pd.read_csv("hour.csv")
 
 
 def hourly_chart():
