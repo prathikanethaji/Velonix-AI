@@ -1,32 +1,39 @@
----
-title: SmartBike AI
-emoji: 🚲
-colorFrom: green
-colorTo: blue
-sdk: gradio
-sdk_version: 6.19.0
-app_file: app.py
-pinned: false
----
+# 🚴 Velonix AI
 
-# 🚲 SmartBike AI
+Velonix AI is an AI-powered Bike Demand Forecasting platform that predicts hourly bike rental demand using Machine Learning.
 
-SmartBike AI predicts hourly bike rental demand using Machine Learning.
+## ✨ Features
 
-## Features
+- 🚲 Single Bike Demand Prediction
+- 📂 Batch CSV Prediction
+- 📊 Interactive Analytics Dashboard
+- 🤖 AI-Based Demand Recommendations
+- 📈 Seasonal & Hourly Demand Analysis
+- ⬇️ Download Prediction Results
+- 📄 Download Sample CSV
 
-- 🚲 Bike Demand Prediction
-- 🌤 Weather-Based Forecasting
-- 🤖 Random Forest Regressor
-- 🎨 Gradio User Interface
-
-## Tech Stack
+## 🛠️ Tech Stack
 
 - Python
-- Gradio
+- Flask
+- HTML
+- CSS
+- JavaScript
 - Scikit-learn
 - Pandas
-- NumPy
+- Plotly
 - Joblib
 
-Developed by **Prathika Nethaji**
+## 🚀 Machine Learning Model
+
+- Random Forest Regressor
+- Feature Engineering
+- Data Preprocessing Pipeline
+
+## 📸 Screenshots
+
+(Add screenshots after deployment)
+
+## 👩‍💻 Developed By
+
+**Prathika Nethaji**
