@@ -147,17 +147,28 @@ Velonix_AI/
 # 📸 Application Screenshots
 
 ### 🏠 Home Page
+<img width="1890" height="853" alt="image" src="https://github.com/user-attachments/assets/5a3a552f-1fb4-4b47-8a59-9b6f39c52516" />
+<img width="1893" height="852" alt="image" src="https://github.com/user-attachments/assets/4ec016bf-d8ae-4ac4-ae72-4ae1df292da5" />
+<img width="1887" height="812" alt="image" src="https://github.com/user-attachments/assets/75059dcd-041e-4c44-bfb5-ef3f9d1a8ee2" />
 
 
 
 ### 🚲 Prediction Page
+<img width="1893" height="783" alt="image" src="https://github.com/user-attachments/assets/e25e566e-6962-470a-a2ab-e00afa167b17" />
+<img width="1897" height="846" alt="image" src="https://github.com/user-attachments/assets/1227cc6f-8203-4728-97ba-6bb048cc48a5" />
 
 
 
 ### 📊 Analytics Dashboard
+<img width="1882" height="552" alt="image" src="https://github.com/user-attachments/assets/631a8aa8-4c6c-418d-8852-4a51bb2fe041" />
+<img width="1891" height="802" alt="image" src="https://github.com/user-attachments/assets/e7a501e3-00d6-456c-b7f0-10da22596999" />
+<img width="1888" height="833" alt="image" src="https://github.com/user-attachments/assets/48a5bc6a-3c7f-4f30-b7fc-c28d5d28a1a6" />
+<img width="1896" height="867" alt="image" src="https://github.com/user-attachments/assets/014d6586-61e2-4dae-8ce5-ff0025cdab8a" />
+<img width="1882" height="810" alt="image" src="https://github.com/user-attachments/assets/a4e6ca24-63f1-43ec-ae9c-1f71ba18466f" />
 
 
 ### 📂 Batch Prediction
+<img width="1887" height="857" alt="image" src="https://github.com/user-attachments/assets/075506ce-ed3f-4c5b-acf5-ecd079524346" />
 
 ---
 
