@@ -115,9 +115,9 @@ NAVBAR
 
     border-radius:30px;
 
-    padding:10px 18px;
+    padding:12px 24px;
 
-    font-weight:600;
+    font-weight:700;
 
 }
 
@@ -1536,5 +1536,248 @@ Predict Dataset Button
     background:#ffb300;
 
     transform:translateY(-2px);
+
+}
+
+/* =========================================
+   Analytics Dashboard
+========================================= */
+
+.analytics-container{
+    max-width:1400px;
+    margin:120px auto 60px;
+    padding:0 30px;
+}
+
+.analytics-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.analytics-title h1{
+    font-size:42px;
+    color:#FFC107;
+    margin-bottom:10px;
+}
+
+.analytics-title p{
+    color:#bdbdbd;
+    font-size:18px;
+}
+
+/* KPI Cards */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    margin-bottom:50px;
+}
+
+.stat-card{
+
+    background:#181818;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border:1px solid #2b2b2b;
+
+    transition:.3s;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#FFC107;
+
+    box-shadow:0 10px 30px rgba(255,193,7,.25);
+}
+
+.stat-card h3{
+
+    color:#bdbdbd;
+
+    font-size:18px;
+
+    margin-bottom:15px;
+}
+
+.stat-card h2{
+
+    color:#FFC107;
+
+    font-size:38px;
+
+    font-weight:bold;
+}
+
+
+/* Charts */
+
+.chart-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-bottom:30px;
+}
+
+.chart-card{
+
+    background:#181818;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    border:1px solid #2b2b2b;
+
+    overflow:hidden;
+}
+
+
+/* Peak Table */
+
+.peak-card{
+
+    margin-top:40px;
+
+    background:#181818;
+
+    border-radius:18px;
+
+    overflow:hidden;
+}
+
+.peak-card h2{
+
+    background:#FFC107;
+
+    color:#111;
+
+    padding:18px;
+
+    margin:0;
+}
+
+.peak-card table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+.peak-card th{
+
+    background:#222;
+
+    color:#FFC107;
+
+    padding:16px;
+}
+
+.peak-card td{
+
+    text-align:center;
+
+    padding:15px;
+
+    border-bottom:1px solid #333;
+
+    color:white;
+}
+
+.peak-card tr:hover{
+
+    background:#242424;
+}
+
+
+/* AI Insights */
+
+.insight-card{
+
+    margin-top:40px;
+
+    background:#181818;
+
+    border-radius:18px;
+
+    overflow:hidden;
+}
+
+.insight-card h2{
+
+    background:#FFC107;
+
+    color:#111;
+
+    padding:18px;
+
+    margin:0;
+}
+
+.insight-card ul{
+
+    list-style:none;
+
+    padding:25px;
+}
+
+.insight-card li{
+
+    background:#222;
+
+    color:white;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    border-left:5px solid #FFC107;
+
+    border-radius:10px;
+}
+
+
+/* Mobile */
+
+@media(max-width:992px){
+
+.stats-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.chart-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.stats-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.analytics-title h1{
+
+font-size:32px;
+
+}
 
 }

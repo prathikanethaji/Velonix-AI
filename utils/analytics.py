@@ -1,114 +1,286 @@
 import pandas as pd
 import plotly.express as px
 
-# Load dataset once
+# ==========================================================
+# Load Dataset
+# ==========================================================
+
 def load_data():
     return pd.read_csv("hour.csv")
 
+
+# ==========================================================
+# Common Plotly Layout
+# ==========================================================
+
+def update_chart_layout(fig):
+
+    fig.update_layout(
+
+        template="plotly_dark",
+
+        paper_bgcolor="#1b1b1b",
+        plot_bgcolor="#1b1b1b",
+
+        font=dict(
+            family="Arial",
+            color="white",
+            size=14
+        ),
+
+        title_font=dict(
+            size=20,
+            color="#FFC107"
+        ),
+
+        margin=dict(
+            l=30,
+            r=30,
+            t=60,
+            b=30
+        ),
+
+        height=450,
+
+        autosize=True,
+
+        legend=dict(
+            bgcolor="#1b1b1b"
+        )
+
+    )
+
+    return fig
+
+
+# ==========================================================
+# Dashboard Statistics
+# ==========================================================
+
+def dashboard_stats():
+
+    df = load_data()
+
+    months = {
+        1: "January",
+        2: "February",
+        3: "March",
+        4: "April",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "August",
+        9: "September",
+        10: "October",
+        11: "November",
+        12: "December"
+    }
+
+    peak_month = int(df.groupby("mnth")["cnt"].mean().idxmax())
+
+    return {
+
+    "total_rentals": int(df["cnt"].sum()),
+
+    "average_demand": round(df["cnt"].mean(), 2),
+
+    "peak_hour": int(df.groupby("hr")["cnt"].mean().idxmax()),
+
+    "peak_month": months[peak_month]
+
+}
+
+
+
+# ==========================================================
+# Hourly Demand
+# ==========================================================
 
 def hourly_chart():
 
     df = load_data()
 
-    hourly = df.groupby("hr")["cnt"].mean().reset_index()
+    hourly = (
+        df.groupby("hr")["cnt"]
+        .mean()
+        .reset_index()
+    )
 
     fig = px.line(
+
         hourly,
+
         x="hr",
+
         y="cnt",
+
         markers=True,
-        title="Average Bike Demand by Hour"
+
+        title="Average Bike Rentals by Hour"
+
     )
 
-    fig.update_layout(
-        template="plotly_dark",
-        height=450
+    fig.update_traces(
+
+        line=dict(
+            color="#FFC107",
+            width=4
+        ),
+
+        marker=dict(
+            size=8
+        )
+
     )
 
-    return fig.to_html(full_html=False)
+    fig = update_chart_layout(fig)
 
+    return fig.to_html(
+
+        full_html=False,
+
+        include_plotlyjs="cdn",
+
+        config={
+            "responsive": True,
+            "displayModeBar": False
+        }
+
+    )
+
+
+# ==========================================================
+# Monthly Demand
+# ==========================================================
 
 def monthly_chart():
+
     df = load_data()
-    monthly = df.groupby("mnth")["cnt"].mean().reset_index()
+
+    monthly = (
+        df.groupby("mnth")["cnt"]
+        .mean()
+        .reset_index()
+    )
 
     fig = px.bar(
+
         monthly,
+
         x="mnth",
+
         y="cnt",
+
         color="cnt",
-        title="Average Monthly Demand"
+
+        color_continuous_scale="YlOrBr",
+
+        title="Average Monthly Bike Demand"
+
     )
 
-    fig.update_layout(
-        template="plotly_dark",
-        height=450
+    fig = update_chart_layout(fig)
+
+    return fig.to_html(
+
+        full_html=False,
+
+        include_plotlyjs=False,
+
+        config={
+            "responsive": True,
+            "displayModeBar": False
+        }
+
     )
 
-    return fig.to_html(full_html=False)
-
+# ==========================================================
+# Seasonal Demand
+# ==========================================================
 
 def seasonal_chart():
 
     df = load_data()
 
-    season_names = {
-        1:"Spring",
-        2:"Summer",
-        3:"Fall",
-        4:"Winter"
+    season_map = {
+        1: "Spring",
+        2: "Summer",
+        3: "Fall",
+        4: "Winter"
     }
 
-    season = df.groupby("season")["cnt"].mean().reset_index()
+    seasonal = (
+        df.groupby("season")["cnt"]
+        .mean()
+        .reset_index()
+    )
 
-    season["season"] = season["season"].map(season_names)
+    seasonal["season"] = seasonal["season"].map(season_map)
 
     fig = px.pie(
 
-        season,
+        seasonal,
 
         values="cnt",
 
         names="season",
 
-        hole=.55,
+        hole=0.45,
 
-        title="Seasonal Demand"
+        color_discrete_sequence=px.colors.sequential.YlOrBr,
 
-    )
-
-    fig.update_layout(
-
-        template="plotly_dark",
-
-        height=450
+        title="Seasonal Demand Distribution"
 
     )
 
-    return fig.to_html(full_html=False)
+    fig.update_traces(
 
+        textposition="inside",
+
+        textinfo="percent+label"
+
+    )
+
+    fig = update_chart_layout(fig)
+
+    return fig.to_html(
+
+        full_html=False,
+
+        include_plotlyjs=False,
+
+        config={
+            "responsive": True,
+            "displayModeBar": False
+        }
+
+    )
+
+
+# ==========================================================
+# Weather Impact
+# ==========================================================
 
 def weather_chart():
 
     df = load_data()
 
-    weather_names={
-
-        1:"Clear",
-
-        2:"Mist",
-
-        3:"Light Rain",
-
-        4:"Heavy Rain"
-
+    weather_map = {
+        1: "Clear",
+        2: "Mist",
+        3: "Light Snow/Rain",
+        4: "Heavy Rain"
     }
 
-    weather=df.groupby("weathersit")["cnt"].mean().reset_index()
+    weather = (
+        df.groupby("weathersit")["cnt"]
+        .mean()
+        .reset_index()
+    )
 
-    weather["weathersit"]=weather["weathersit"].map(weather_names)
+    weather["weathersit"] = weather["weathersit"].map(weather_map)
 
-    fig=px.bar(
+    fig = px.bar(
 
         weather,
 
@@ -118,86 +290,71 @@ def weather_chart():
 
         color="cnt",
 
-        title="Weather Impact"
+        color_continuous_scale="YlOrBr",
+
+        title="Weather Impact on Rentals"
 
     )
 
-    fig.update_layout(
+    fig = update_chart_layout(fig)
 
-        template="plotly_dark",
+    return fig.to_html(
 
-        height=450
+        full_html=False,
+
+        include_plotlyjs=False,
+
+        config={
+            "responsive": True,
+            "displayModeBar": False
+        }
 
     )
 
-    return fig.to_html(full_html=False)
 
+# ==========================================================
+# Top Peak Hours
+# ==========================================================
 
 def top_peak_hours():
 
     df = load_data()
-    peak = df.groupby("hr")["cnt"].mean().sort_values(ascending=False).head(5)
 
-    return peak
+    peak_hours = (
+        df.groupby("hr")["cnt"]
+        .mean()
+        .sort_values(ascending=False)
+        .head(10)
+    )
 
-def dashboard_stats():
+    return peak_hours.to_dict()
 
-    df = load_data()
-    stats = {
 
-        "total_rentals": int(df["cnt"].sum()),
-
-        "average_demand": int(df["cnt"].mean()),
-
-        "peak_hour": int(df.groupby("hr")["cnt"].mean().idxmax()),
-
-        "peak_month": int(df.groupby("mnth")["cnt"].mean().idxmax())
-
-    }
-
-    return stats
+# ==========================================================
+# AI Insights
+# ==========================================================
 
 def ai_insights():
 
-    df = load_data()
-
-    peak_hour = df.groupby("hr")["cnt"].mean().idxmax()
-
-    peak_season = (
-        df.groupby("season")["cnt"]
-        .mean()
-        .idxmax()
-    )
-
-    peak_weather = (
-        df.groupby("weathersit")["cnt"]
-        .mean()
-        .idxmax()
-    )
-
-    season_map = {
-        1: "Spring",
-        2: "Summer",
-        3: "Fall",
-        4: "Winter"
-    }
-
-    weather_map = {
-        1: "Clear Weather",
-        2: "Mist / Cloudy",
-        3: "Light Rain",
-        4: "Heavy Rain"
-    }
+    stats = dashboard_stats()
 
     insights = [
 
-        f"Peak bike demand occurs around {peak_hour}:00.",
+        f"🚲 A total of {stats['total_rentals']:,} bike rentals have been recorded in the dataset.",
 
-        f"{season_map[peak_season]} records the highest average rentals.",
+        f"📈 The average rental demand is {stats['average_demand']} bikes per hour.",
 
-        f"{weather_map[peak_weather]} results in the highest demand.",
+        f"⏰ Peak demand occurs around {stats['peak_hour']}:00, indicating the busiest rental period.",
 
-        "Demand increases during commuting hours, indicating strong work-related usage."
+        f"📅 {stats['peak_month']} experiences the highest average rental demand.",
+
+        "💡 Increase bike availability during evening peak hours to reduce shortages.",
+
+        "🔧 Schedule bike maintenance during low-demand periods to minimize service disruption.",
+
+        "🌤 Weather conditions significantly influence bike rental demand.",
+
+        "📊 Seasonal demand trends can help optimize inventory planning."
 
     ]
 

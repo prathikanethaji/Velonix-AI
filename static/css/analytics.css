@@ -1,0 +1,312 @@
+/* =====================================================
+   Velonix AI - Analytics Dashboard
+===================================================== */
+
+.analytics-container{
+    width:95%;
+    max-width:1600px;
+    margin:120px auto 60px;
+    padding:0 20px;
+}
+
+/* ================= HEADER ================= */
+
+.dashboard-header{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.dashboard-header h1{
+    color:#FFC107;
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.dashboard-header p{
+    color:#BDBDBD;
+    font-size:18px;
+}
+
+/* ================= KPI CARDS ================= */
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    margin-bottom:40px;
+}
+
+.stat-card{
+    background:#1b1b1b;
+    border:1px solid #303030;
+    border-radius:16px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    transition:.3s ease;
+}
+
+.stat-card:hover{
+    transform:translateY(-6px);
+    border-color:#FFC107;
+    box-shadow:0 10px 25px rgba(255,193,7,.18);
+}
+
+.stat-icon{
+    width:65px;
+    height:65px;
+    background:#FFC107;
+    color:#111;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    flex-shrink:0;
+}
+
+.stat-content{
+    flex:1;
+}
+
+.stat-content h4{
+    color:#BDBDBD;
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.stat-content h2{
+    color:white;
+    font-size:32px;
+    margin:0;
+}
+
+/* ================= CHARTS ================= */
+
+.charts-section{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+    margin-bottom:40px;
+}
+
+.chart-box{
+    background:#1b1b1b;
+    border-radius:16px;
+    border:1px solid #303030;
+    padding:20px;
+    transition:.3s;
+}
+
+.chart-box:hover{
+    border-color:#FFC107;
+}
+
+.chart-header{
+    margin-bottom:15px;
+}
+
+.chart-header h3{
+    color:#FFC107;
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.chart-header p{
+    color:#BDBDBD;
+    font-size:14px;
+}
+
+.chart-body{
+    width:100%;
+    min-height:420px;
+    overflow:hidden;
+}
+
+/* Plotly */
+
+.chart-body .plotly,
+.chart-body iframe,
+.chart-body div{
+    width:100% !important;
+}
+
+/* ================= BOTTOM ================= */
+
+.bottom-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+}
+
+/* ================= TABLE ================= */
+
+.peak-hours{
+    background:#1b1b1b;
+    border-radius:16px;
+    border:1px solid #303030;
+    overflow:hidden;
+}
+
+.section-title{
+    padding:22px;
+}
+
+.section-title h2{
+    color:#FFC107;
+    margin-bottom:5px;
+}
+
+.section-title p{
+    color:#BDBDBD;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#FFC107;
+    color:#111;
+    padding:15px;
+    font-size:16px;
+}
+
+td{
+    color:white;
+    padding:14px;
+    text-align:center;
+    border-bottom:1px solid #2b2b2b;
+}
+
+tbody tr:hover{
+    background:#242424;
+}
+
+/* ================= INSIGHTS ================= */
+
+.insights{
+    background:#1b1b1b;
+    border-radius:16px;
+    border:1px solid #303030;
+}
+
+.insight-list{
+    padding:20px;
+}
+
+.insight-item{
+    background:#242424;
+    border-left:4px solid #FFC107;
+    border-radius:10px;
+    padding:16px;
+    display:flex;
+    gap:15px;
+    align-items:flex-start;
+    margin-bottom:15px;
+    transition:.3s;
+}
+
+.insight-item:hover{
+    transform:translateX(5px);
+    background:#2c2c2c;
+}
+
+.insight-item span{
+    color:#FFC107;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.insight-item p{
+    color:white;
+    margin:0;
+    line-height:1.5;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1200px){
+
+.stats-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.bottom-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:900px){
+
+.charts-section{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:700px){
+
+.analytics-container{
+width:100%;
+padding:0 15px;
+}
+
+.stats-grid{
+grid-template-columns:1fr;
+}
+
+.stat-card{
+flex-direction:column;
+text-align:center;
+}
+
+.dashboard-header h1{
+font-size:34px;
+}
+
+.chart-body{
+min-height:350px;
+}
+
+}
+
+/* Force Plotly charts to fill the container */
+
+.chart-body > div{
+
+    width:100% !important;
+
+}
+
+.js-plotly-plot{
+
+    width:100% !important;
+
+}
+
+.plot-container{
+
+    width:100% !important;
+
+}
+
+.svg-container{
+
+    width:100% !important;
+
+}
+
+
+.peak-hours table{
+    width:100%;
+}
+
+.peak-hours table{
+    width:100%;
+    border-collapse:collapse;
+}

@@ -6,146 +6,251 @@ Analytics | Velonix AI
 
 {% block content %}
 
-<section class="analytics-page">
+<div class="analytics-container">
 
-    <div class="analytics-header">
+    <!-- ================= Header ================= -->
+
+    <section class="dashboard-header">
 
         <h1>📊 Analytics Dashboard</h1>
 
         <p>
-            Explore historical bike demand trends and patterns.
+            Explore bike rental demand trends and AI-powered insights.
         </p>
 
+    </section>
+
+
+    <!-- ================= Statistics ================= -->
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">🚲</div>
+
+            <div class="stat-content">
+
+                <h4>Total Rentals</h4>
+
+                <h2>{{ "{:,}".format(stats.total_rentals) }}</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">📈</div>
+
+            <div class="stat-content">
+
+                <h4>Average Demand</h4>
+
+                <h2>{{ stats.average_demand }}</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">⏰</div>
+
+            <div class="stat-content">
+
+                <h4>Peak Hour</h4>
+
+                <h2>{{ stats.peak_hour }}:00</h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">📅</div>
+
+            <div class="stat-content">
+
+                <h4>Peak Month</h4>
+
+                <h2>{{ stats.peak_month }}</h2>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= Charts ================= -->
+
+    <section class="charts-section">
+
+        <div class="chart-box">
+
+            <div class="chart-header">
+
+                <h3>📈 Hourly Demand</h3>
+
+                <p>Average rentals by hour</p>
+
+            </div>
+
+            <div class="chart-body">
+
+                {{ hourly|safe }}
+
+            </div>
+
+        </div>
+
+
+<div class="chart-box">
+
+    <div class="chart-header">
+
+        <h3>📅 Monthly Demand</h3>
+
+        <p>Average rentals across months</p>
+
     </div>
 
-    <div class="stats-grid">
+    <div class="chart-body">
 
-    <div class="stat-card">
-
-        <h3>Total Rentals</h3>
-
-        <h1>{{ "{:,}".format(stats.total_rentals) }}</h1>
+        {{ monthly|safe }}
 
     </div>
 
-    <div class="stat-card">
+</div>      <!-- THIS IS MISSING -->
 
-        <h3>Average Demand</h3>
+<div class="chart-box">
 
-        <h1>{{ stats.average_demand }}</h1>
+            <div class="chart-header">
 
-    </div>
+                <h3>🌤 Seasonal Demand</h3>
 
-    <div class="stat-card">
+                <p>Average rentals by season</p>
 
-        <h3>Peak Hour</h3>
+            </div>
 
-        <h1>{{ stats.peak_hour }}:00</h1>
+            <div class="chart-body">
 
-    </div>
+                {{ seasonal|safe }}
 
-    <div class="stat-card">
+            </div>
 
-        <h3>Peak Month</h3>
+        </div>
 
-        <h1>{{ stats.peak_month }}</h1>
 
-    </div>
+        <div class="chart-box">
 
+            <div class="chart-header">
+
+                <h3>🌧 Weather Impact</h3>
+
+                <p>Effect of weather on bike rentals</p>
+
+            </div>
+
+            <div class="chart-body">
+
+                {{ weather|safe }}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= Bottom Section ================= -->
+
+    <section class="bottom-grid">
+
+        <!-- Peak Hours -->
+
+        <div class="peak-hours">
+
+            <div class="section-title">
+
+                <h2>🏆 Top Peak Hours</h2>
+
+                <p>Hours with the highest average bike rentals.</p>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                       <th>Rank</th>
+                       <th>Hour</th>
+                       <th>Average Rentals</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+               {% for hour, value in peaks.items() %}
+
+              <tr>
+
+               <td>{{ loop.index }}</td>
+
+                <td>{{ hour }}:00</td>
+
+                <td>{{ value|round|int }}</td>
+
+              </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+                <!-- ================= AI Insights ================= -->
+
+        <div class="insights">
+
+            <div class="section-title">
+
+                <h2>🤖 AI Insights</h2>
+
+                <p>AI-generated business recommendations based on historical demand.</p>
+
+            </div>
+
+            <div class="insight-list">
+
+                {% for insight in insights %}
+
+                <div class="insight-item">
+
+                    <span>✔</span>
+
+                    <p>{{ insight }}</p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
 </div>
-
-    <!-- First Row -->
-
-    <div class="chart-grid">
-
-        <div class="chart-card">
-
-            {{ hourly|safe }}
-
-        </div>
-
-        <div class="chart-card">
-
-            {{ monthly|safe }}
-
-        </div>
-
-    </div>
-
-    <!-- Second Row -->
-
-    <div class="chart-grid">
-
-        <div class="chart-card">
-
-            {{ seasonal|safe }}
-
-        </div>
-
-        <div class="chart-card">
-
-            {{ weather|safe }}
-
-        </div>
-
-    </div>
-
-    <!-- Peak Hours -->
-
-    <div class="peak-card">
-
-        <h2>🏆 Top 5 Peak Hours</h2>
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>Hour</th>
-
-                    <th>Average Rentals</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-            {% for hour,value in peaks.items() %}
-
-                <tr>
-
-                    <td>{{ hour }}:00</td>
-
-                    <td>{{ value|round|int }}</td>
-
-                </tr>
-
-            {% endfor %}
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-    <div class="insight-card">
-
-    <h2>🤖 AI Insights</h2>
-
-    <ul>
-
-        {% for insight in insights %}
-
-        <li>{{ insight }}</li>
-
-        {% endfor %}
-
-    </ul>
-
-</div>
-
-</section>
 
 {% endblock %}

@@ -29,6 +29,8 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analytics.css') }}">
+
 </head>
 
 <body>
@@ -62,8 +64,8 @@
         </li>
 
         <li>
-            <a href="/analytics" class="{% if active_page=='analytics' %}active{% endif %}">
-                Analytics
+           <a href="{{ url_for('analytics_page') }}"class="{% if request.path == '/analytics' %}active{% endif %}">
+                 Analytics
             </a>
         </li>
 

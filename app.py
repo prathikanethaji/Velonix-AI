@@ -66,12 +66,19 @@ def analytics_page():
 
     return render_template(
         "analytics.html",
-        hourly=analytics.hourly_chart(),
-        monthly=analytics.monthly_chart(),
-        seasonal=analytics.seasonal_chart(),
-        weather=analytics.weather_chart(),
-        peaks=analytics.top_peak_hours(),
+
         stats=analytics.dashboard_stats(),
+
+        hourly=analytics.hourly_chart(),
+
+        monthly=analytics.monthly_chart(),
+
+        seasonal=analytics.seasonal_chart(),
+
+        weather=analytics.weather_chart(),
+
+        peaks=analytics.top_peak_hours(),
+
         insights=analytics.ai_insights()
     )
 
